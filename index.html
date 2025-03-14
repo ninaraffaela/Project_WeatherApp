@@ -1,12 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TeamProject WeatherApp</title>
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
-   
+    <h1>Teamproject WeatherApp - Mona, Hao, Nina</h1>
+    <div id="box">
+      <input id="user-input" type="text" />
+      <input id="submit-btn" type="submit" value="Check Weather" />
+      
+
+      <section id="fill-the-blanks">
+        
+        <div id="output-area">placeholder for icon and "Weather in user-input"</div>
+        <div>
+          <p>Local Time</p>
+          <p id="api-local-time"></p>
+        </div>
+
+        <div>
+          <p>WindSpeed</p>
+          <p id="api-wind-speed"></p>
+        </div>
+
+        <div>
+          <p>Cloudiness</p>
+          <p id="api-cloudiness"></p>
+        </div>
+
+        <div>
+          <p>Pressure</p>
+          <p id="api-pressure"></p>
+        </div>
+
+        <div>
+          <p>Humidity</p>
+          <p id="api-humidity"></p>
+        </div>
+
+        <div>
+          <p>Sunrise</p>
+          <p id="api-sunrise"></p>
+        </div>
+
+        <div>
+          <p>Sunset</p>
+          <p id="api-sunset"></p>
+        </div>
+
+        <div>
+          <p>Geo Coordinates</p>
+          <p id="api-coordinates"></p>
+        </div>
+      </section>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
