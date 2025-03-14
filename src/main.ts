@@ -3,14 +3,14 @@ const submitBtn = document.querySelector("#submit-btn");
 
 const outputArea = document.querySelector("#output-area");
 
-const localTimeOutput = document.querySelector("#api-local-time");
-const windSpeedOutput = document.querySelector("#api-wind-speed");
-const cloudinessOutput = document.querySelector("#api-cloudiness");
-const pressureOutput = document.querySelector("#api-pressure");
-const humidityOutput = document.querySelector("#api-humidity");
-const sunriseOutput = document.querySelector("#api-sunrise");
-const sunsetOutput = document.querySelector("#api-sunset");
-const coordinatesOutput = document.querySelector("#api-coordinates");
+let localTimeOutput = document.querySelector("#api-local-time");
+let windSpeedOutput = document.querySelector("#api-wind-speed");
+let cloudinessOutput = document.querySelector("#api-cloudiness");
+let pressureOutput = document.querySelector("#api-pressure");
+let humidityOutput = document.querySelector("#api-humidity");
+let sunriseOutput = document.querySelector("#api-sunrise") as HTMLParagraphElement;
+let sunsetOutput = document.querySelector("#api-sunset")as HTMLParagraphElement;
+let coordinatesOutput = document.querySelector("#api-coordinates") as HTMLParagraphElement;
 
 const apiKey = "1df87bf8dc76ad9d26cf0c6d8c378325";
 
@@ -92,13 +92,13 @@ export type Wind = {
 
 
 
-submitBtn.addEventListener("click", () => {
+submitBtn?.addEventListener("click", () => {
         const city = userInput.value;
 
 fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`).then((res) => res.json()).then((data) => {
     //+ Fehler, wenn keine Stadt vorhanden 
-    if (data.length === 0) {
-        window.alert("Stadt nicht gefunden!"); //# warum kein alert wenn input leer? 
+    if (data.length === undefined || data.length === 0) {
+        window.alert("Stadt nicht gefunden!"); 
         return;
     }
     
@@ -112,7 +112,82 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`).
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=DE`).then((res) => res.json().then((data) =>{
 
         console.log(data)
+
+
+    
+        const weatherIcon = data.weather[0].icon;
+        console.log(weatherIcon);
+
+        // - CONVERT UNIX-CODES
+        const dt = data.dt;  // Zeitstempel (Sekunden seit 1970)
+        const timezone = data.timezone;  // Zeitzonenoffset (Sekunden)
+        const localTime = new Date((dt + timezone) * 1000).toLocaleTimeString("de-DE");
+
+        const sunrise = data.sys.sunrise;
+        const sunriseTransformed = new Date((sunrise + timezone) * 1000).toLocaleTimeString("de-DE");
+        console.log(sunriseTransformed);
+        
+        const sunset = data.sys.sunset;
+        const sunsetTransformed = new Date((sunset + timezone) * 1000).toLocaleTimeString("de-DE");
+        console.log(sunsetTransformed);
+
+
+        // - create OUTPUT Elements
+        const outputCity = document.createElement("h2");
+        outputCity.innerText = `Weather in ${city}`;
+        outputCity.classList.add("output-city")
+
+        const outputCountry = document.createElement("p");
+        outputCountry.innerText = data.sys.country;
+        outputCountry.classList.add("output-country")
+
+       
+
+        const outputIcon = document.createElement("img");
+        outputIcon.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+        outputIcon.classList.add("output-icon");
+        
+        
+
+        const outputTemp = document.createElement("p");
+        outputTemp.innerText = `${data.main.temp}°`;
+        outputTemp.classList.add("output-icon");
+
+        const iconContainer = document.createElement("div");
+        iconContainer.append(outputIcon, outputTemp)
+
+        const outputDescription = document.createElement("p");
+        outputDescription.innerText = data.weather[0].description;
+        outputDescription.classList.add("output-description");
+
+        outputArea?.append(outputCity, outputCountry, iconContainer, outputDescription )
+
+
+
+        
+
+        if (localTimeOutput) {
+            localTimeOutput.textContent = localTime;
+        }
+
+        windSpeedOutput = data.wind.speed;
+        cloudinessOutput = data.clouds.all
+        pressureOutput = data.main.pressure;
+        humidityOutput = data.main.humidity;
+        sunriseOutput.textContent = sunriseTransformed;
+        sunsetOutput.textContent = sunsetTransformed;
+        coordinatesOutput.textContent = `${lat}, ${lon}`;
+        
+        
+        console.log(localTimeOutput, windSpeedOutput, cloudinessOutput, pressureOutput, humidityOutput, sunriseOutput, sunsetOutput, coordinatesOutput);
+
+        
+        
+        
+
+
     }))
+    
 
 
 
