@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: solid teal 1px;
+}
+
+:root {
+    --color-hightlight: #fe6440;
+    --color-greywhite: rgb(223, 211, 211);
+    --color-background: #474747;
+    --color-btnBackground: #212121;
+}
+html {
+    font-size: 62.5%;
+    
+}
+
+img {
+    max-width: 100%;
+}
+
+h1 {
+    color: teal;
+    text-align: center;
+    padding: 2vh;
+    margin-bottom: 2vh;
+    font-size: 3rem;
+}
+/* # change h1 names */
+
+main {
+    width: 40vw;
+    margin: 0 auto;
+    background-color: var(--color-background);
+    border-radius: 5px;
+    color: var(--color-greywhite);
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+}
+
+#user-input {
+    width: 90%;
+    font-size: 2rem;
+}
+
+#submit-btn {
+    padding: .8rem 2.5rem;
+    background-color: var(--color-btnBackground);
+    color: var(--color-greywhite);
+    border-radius: 5px;
+    border: solid 1px var(--color-greywhite);
+    margin-bottom: 3vh;
+}
+
+#submit-btn:hover {
+    background-color: #fe6440;
+}
+
+#output-area {
+    width: 90%;
+    text-align: center;
+}
+
+#fill-the-blanks {
+    width: 90%;
+    background-color: teal;
+}
+
+/* # in the html the output-area outside of section fill-the-blanks */
+/* # remove the strokes */
+#fill-the-blanks div {
+    border: solid 0.5px rgb(223, 211, 211);
+    padding: 1vw;
+    display: flex;
+    justify-content: space-between;
+   
+    align-items: center;
+}
+
