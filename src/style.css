@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: solid teal 1px;
+    /* border: solid teal 1px; */
 }
 
 :root {
@@ -27,7 +27,7 @@ h1 {
     margin-bottom: 2vh;
     font-size: 3rem;
 }
-/* # change h1 names */
+
 
 main {
     width: 40vw;
@@ -65,13 +65,29 @@ main {
     text-align: center;
 }
 
-#fill-the-blanks {
-    width: 90%;
-    background-color: teal;
+
+#output-area div {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    margin-bottom: 2vh;
 }
 
-/* # in the html the output-area outside of section fill-the-blanks */
-/* # remove the strokes */
+#output-area div p {
+    font-size: 2rem;
+}
+.output-country {
+    text-transform: uppercase;
+    margin-bottom: 2vh;
+}
+
+#fill-the-blanks {
+    width: 90%;
+    /* background-color: teal; */
+}
+
+
 #fill-the-blanks div {
     border: solid 0.5px rgb(223, 211, 211);
     padding: 1vw;
