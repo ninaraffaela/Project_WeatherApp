@@ -1,6 +1,6 @@
 # Project_WeatherApp
 
-lovely TeamProject to practice APIs.
+lovely TeamProject to practice APIs and Epoch Unix.
 => Create a WeatherApp with OpenWeather API.
 Team Mona, Nina
 
